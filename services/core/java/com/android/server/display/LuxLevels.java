@@ -24,7 +24,7 @@ import android.util.Slog;
 final class LuxLevels {
     private static final String TAG = "LuxLevels";
 
-    private static final boolean DEBUG = true;
+    private static final boolean DEBUG = false;
 
     private final float[] mBrightLevels;
     private final float[] mDarkLevels;

@@ -34,7 +34,7 @@ import android.view.SurfaceControl;
 import android.view.SurfaceSession;
 
 class BlurLayer {
-    private static final boolean DEBUG = true;
+    private static final boolean DEBUG = false;
     private static final String TAG = BlurLayer.class.getSimpleName();
 
     /** Actual surface that blurs */

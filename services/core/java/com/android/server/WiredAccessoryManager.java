@@ -53,7 +53,7 @@ import java.util.Locale;
  */
 final class WiredAccessoryManager implements WiredAccessoryCallbacks {
     private static final String TAG = WiredAccessoryManager.class.getSimpleName();
-    private static final boolean LOG = true;
+    private static final boolean LOG = false;
 
     private static final int BIT_HEADSET = (1 << 0);
     private static final int BIT_HEADSET_NO_MIC = (1 << 1);

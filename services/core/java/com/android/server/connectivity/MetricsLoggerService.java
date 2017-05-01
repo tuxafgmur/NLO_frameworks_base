@@ -38,7 +38,7 @@ import java.util.ArrayList;
 /** {@hide} */
 public class MetricsLoggerService extends SystemService {
     private static String TAG = "ConnectivityMetricsLoggerService";
-    private static final boolean DBG = true;
+    private static final boolean DBG = false;
     private static final boolean VDBG = false;
 
     public MetricsLoggerService(Context context) {

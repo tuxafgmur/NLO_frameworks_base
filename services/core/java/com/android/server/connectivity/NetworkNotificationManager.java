@@ -62,7 +62,7 @@ public class NetworkNotificationManager {
     };
 
     private static final String TAG = NetworkNotificationManager.class.getSimpleName();
-    private static final boolean DBG = true;
+    private static final boolean DBG = false;
     private static final boolean VDBG = false;
 
     private final Context mContext;

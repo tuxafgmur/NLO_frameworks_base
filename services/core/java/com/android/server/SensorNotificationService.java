@@ -32,7 +32,7 @@ import android.util.Slog;
 
 public class SensorNotificationService extends SystemService implements SensorEventListener {
     //TODO: set DBG to false or remove Slog before release
-    private static final boolean DBG = true;
+    private static final boolean DBG = false;
     private static final String TAG = "SensorNotificationService";
     private Context mContext;
 

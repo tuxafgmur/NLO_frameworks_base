@@ -29,7 +29,7 @@ import com.android.internal.annotations.VisibleForTesting;
 @SystemApi
 public class ConnectivityMetricsLogger {
     private static String TAG = "ConnectivityMetricsLogger";
-    private static final boolean DBG = true;
+    private static final boolean DBG = false;
 
     public static final String CONNECTIVITY_METRICS_LOGGER_SERVICE = "connectivity_metrics_logger";
 

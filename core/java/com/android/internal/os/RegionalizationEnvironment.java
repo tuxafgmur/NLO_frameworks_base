@@ -46,7 +46,7 @@ public class RegionalizationEnvironment {
 
     private final static boolean SUPPORTED = SystemProperties.getBoolean(
             "ro.regionalization.support", false);
-    private final static boolean DEBUG = true;
+    private final static boolean DEBUG = false;
 
     private static IRegionalizationService mRegionalizationService = null;
 
@@ -219,7 +219,9 @@ public class RegionalizationEnvironment {
         if (getPackagesCount() == 0) return;
 
         for (Package pack : mPackages) {
-            Log.d(TAG, "load excluded apps for " + pack.getDirectory());
+            if (DEBUG)
+                Log.d(TAG, "load excluded apps for " + pack.getDirectory());
+
             String excListFilePath = pack.getExcludedListFilePath();
             ArrayList<String> contents = null;
             try {

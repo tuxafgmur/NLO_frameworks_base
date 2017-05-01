@@ -167,7 +167,7 @@ public class ApfFilter {
     }
 
     private static final String TAG = "ApfFilter";
-    private static final boolean DBG = true;
+    private static final boolean DBG = false;
     private static final boolean VDBG = false;
 
     private static final int ETH_HEADER_LEN = 14;
