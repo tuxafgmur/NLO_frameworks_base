@@ -118,13 +118,13 @@
     <bool name="config_sendAudioBecomingNoisy">true</bool>
 
     <!-- The duration (in milliseconds) of a short animation. -->
-    <integer name="config_shortAnimTime">200</integer>
+    <integer name="config_shortAnimTime">50</integer>
 
     <!-- The duration (in milliseconds) of a medium-length animation. -->
-    <integer name="config_mediumAnimTime">400</integer>
+    <integer name="config_mediumAnimTime">100</integer>
 
     <!-- The duration (in milliseconds) of a long animation. -->
-    <integer name="config_longAnimTime">500</integer>
+    <integer name="config_longAnimTime">150</integer>
 
     <!-- The duration (in milliseconds) of the activity open/close and fragment open/close animations. -->
     <integer name="config_activityShortDur">150</integer>
@@ -493,35 +493,35 @@
     <integer translatable="false" name="config_wifi_framework_network_switch_rx_packet_threshold">20</integer>
 
     <!-- Integer indicating wpa_supplicant scan interval in milliseconds -->
-    <integer translatable="false" name="config_wifi_supplicant_scan_interval">15000</integer>
+    <integer translatable="false" name="config_wifi_supplicant_scan_interval">18000</integer>
 
     <!-- Integer indicating amount of time failed networks areblacklisted for the purpose
          of network switching in milliseconds -->
     <integer translatable="false" name="config_wifi_network_switching_blacklist_time">172800000</integer>
 
     <!-- Integer indicating wpa_supplicant scan interval when p2p is connected in milliseconds -->
-    <integer translatable="false" name="config_wifi_scan_interval_p2p_connected">60000</integer>
+    <integer translatable="false" name="config_wifi_scan_interval_p2p_connected">90000</integer>
 
     <!-- Integer indicating the framework scan interval in milliseconds. This is used in the scenario
          where the chipset does not support background scanning (config_wifi_background_scan_suport
          is false) to set up a periodic wake up scan so that the device can connect to a new access
          point on the move. A value of 0 means no periodic scans will be used in the framework. -->
-    <integer translatable="false" name="config_wifi_framework_scan_interval">300000</integer>
+    <integer translatable="false" name="config_wifi_framework_scan_interval">360000</integer>
 
     <!-- Integer indicating the framework no networks periodic scan interval in milliseconds. -->
-    <integer translatable="false" name="config_wifi_no_network_periodic_scan_interval">300000</integer>
+    <integer translatable="false" name="config_wifi_no_network_periodic_scan_interval">360000</integer>
 
     <!-- Integer indicating disconnect mode short scan interval in milliseconds -->
-    <integer translatable="false" name="config_wifi_disconnected_short_scan_interval">15000</integer>
+    <integer translatable="false" name="config_wifi_disconnected_short_scan_interval">18000</integer>
 
     <!-- Integer indicating associated partial scan short interval in milliseconds -->
-    <integer translatable="false" name="config_wifi_associated_short_scan_interval">20000</integer>
+    <integer translatable="false" name="config_wifi_associated_short_scan_interval">24000</integer>
 
     <!-- Integer indicating associated full scan backoff, representing a fraction: xx/8 -->
     <integer translatable="false" name="config_wifi_framework_associated_full_scan_backoff">12</integer>
 
     <!-- Integer indicating associated full scan max interval in milliseconds -->
-    <integer translatable="false" name="config_wifi_framework_associated_full_scan_max_interval">300000</integer>
+    <integer translatable="false" name="config_wifi_framework_associated_full_scan_max_interval">360000</integer>
 
     <!-- Integer indicating associated full scan max total dwell time in milliseconds -->
     <integer translatable="false" name="config_wifi_framework_associated_full_scan_max_total_dwell_time">500</integer>
@@ -584,7 +584,7 @@
     <bool name="config_useAttentionLight">false</bool>
 
     <!-- If this is true, the screen will fade off. -->
-    <bool name="config_animateScreenLights">false</bool>
+    <bool name="config_animateScreenLights">true</bool>
 
     <!-- If this is true, key chords can be used to take a screenshot on the device. -->
     <bool name="config_enableScreenshotChord">true</bool>
@@ -965,7 +965,7 @@
     <integer name="config_shutdownBatteryTemperature">680</integer>
 
     <!-- Display low battery warning when battery level dips to this value -->
-    <integer name="config_lowBatteryWarningLevel">15</integer>
+    <integer name="config_lowBatteryWarningLevel">20</integer>
 
     <!-- Close low battery warning when battery level reaches the lowBatteryWarningLevel
          plus this -->
