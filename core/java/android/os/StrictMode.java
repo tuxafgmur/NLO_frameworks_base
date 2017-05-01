@@ -147,11 +147,11 @@ public final class StrictMode {
      */
     private static final String CLEARTEXT_PROPERTY = "persist.sys.strictmode.clear";
 
-    // Only log a duplicate stack trace to the logs every second.
-    private static final long MIN_LOG_INTERVAL_MS = 1000;
+    // Only log a duplicate stack trace to the logs every 5 seconds.
+    private static final long MIN_LOG_INTERVAL_MS = 5000;
 
-    // Only show an annoying dialog at most every 30 seconds
-    private static final long MIN_DIALOG_INTERVAL_MS = 30000;
+    // Only show an annoying dialog at most every 45 seconds
+    private static final long MIN_DIALOG_INTERVAL_MS = 45000;
 
     // How many Span tags (e.g. animations) to report.
     private static final int MAX_SPAN_TAGS = 20;
@@ -2471,16 +2471,6 @@ public final class StrictMode {
             dest.writeString(broadcastIntentAction);
             dest.writeStringArray(tags);
             int total = dest.dataPosition()-start;
-            if (total > 10*1024) {
-                Slog.d(TAG, "VIO: policy=" + policy + " dur=" + durationMillis
-                        + " numLoop=" + violationNumThisLoop
-                        + " anim=" + numAnimationsRunning
-                        + " uptime=" + violationUptimeMillis
-                        + " numInst=" + numInstances);
-                Slog.d(TAG, "VIO: action=" + broadcastIntentAction);
-                Slog.d(TAG, "VIO: tags=" + Arrays.toString(tags));
-                Slog.d(TAG, "VIO: TOTAL BYTES WRITTEN: " + (dest.dataPosition()-start));
-            }
         }
 
 

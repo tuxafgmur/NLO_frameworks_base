@@ -430,15 +430,6 @@ public class ApplicationErrorReport implements Parcelable {
             dest.writeInt(throwLineNumber);
             dest.writeString(stackTrace);
             int total = dest.dataPosition()-start;
-            if (total > 20*1024) {
-                Slog.d("Error", "ERR: exClass=" + exceptionClassName);
-                Slog.d("Error", "ERR: exMsg=" + exceptionMessage);
-                Slog.d("Error", "ERR: file=" + throwFileName);
-                Slog.d("Error", "ERR: class=" + throwClassName);
-                Slog.d("Error", "ERR: method=" + throwMethodName + " line=" + throwLineNumber);
-                Slog.d("Error", "ERR: stack=" + stackTrace);
-                Slog.d("Error", "ERR: TOTAL BYTES WRITTEN: " + (dest.dataPosition()-start));
-            }
         }
 
         /**
