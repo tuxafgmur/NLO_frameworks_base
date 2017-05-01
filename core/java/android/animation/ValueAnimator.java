@@ -536,8 +536,7 @@ public class ValueAnimator extends Animator implements AnimationHandler.Animatio
     @Override
     public ValueAnimator setDuration(long duration) {
         if (duration < 0) {
-            throw new IllegalArgumentException("Animators cannot have negative duration: " +
-                    duration);
+            duration = 0;
         }
         mDuration = duration;
         return this;
