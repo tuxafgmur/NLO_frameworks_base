@@ -368,7 +368,7 @@ public class PackageManagerService extends IPackageManager.Stub {
     static final boolean DEBUG_DEXOPT = false;
 
     private static final boolean DEBUG_ABI_SELECTION = false;
-    private static final boolean DEBUG_EPHEMERAL = Build.IS_DEBUGGABLE;
+    private static final boolean DEBUG_EPHEMERAL = false;
     private static final boolean DEBUG_TRIAGED_MISSING = false;
     private static final boolean DEBUG_APP_DATA = false;
     private static final boolean DEBUG_PROTECTED = false;
@@ -897,8 +897,8 @@ public class PackageManagerService extends IPackageManager.Stub {
                 ivi = mSettings.getIntentFilterVerificationLPr(packageName);
             }
             if (ivi == null) {
-                Slog.w(TAG, "IntentFilterVerificationInfo not found for verificationId:"
-                        + verificationId + " packageName:" + packageName);
+                //Slog.w(TAG, "IntentFilterVerificationInfo not found for verificationId:"
+                //        + verificationId + " packageName:" + packageName);
                 return;
             }
             if (DEBUG_DOMAIN_VERIFICATION) Slog.d(TAG,
@@ -1269,8 +1269,8 @@ public class PackageManagerService extends IPackageManager.Stub {
                                 return;
                             }
                             mPendingInstalls.clear();
-                        } else {
-                            Slog.w(TAG, "Waiting to connect to media container service");
+                        //} else {
+                        //    Slog.w(TAG, "Waiting to connect to media container service");
                         }
                     } else if (mPendingInstalls.size() > 0) {
                         HandlerParams params = mPendingInstalls.get(0);
@@ -2582,10 +2582,10 @@ public class PackageManagerService extends IPackageManager.Stub {
                         // skip setup wizard; allow it to keep the high priority filter
                         continue;
                     }
-                    Slog.w(TAG, "Protected action; cap priority to 0;"
-                            + " package: " + filter.activity.info.packageName
-                            + " activity: " + filter.activity.className
-                            + " origPrio: " + filter.getPriority());
+                    //Slog.w(TAG, "Protected action; cap priority to 0;"
+                    //        + " package: " + filter.activity.info.packageName
+                    //        + " activity: " + filter.activity.className
+                    //        + " origPrio: " + filter.getPriority());
                     filter.setPriority(0);
                 }
             }
@@ -2611,9 +2611,9 @@ public class PackageManagerService extends IPackageManager.Stub {
 
             EventLog.writeEvent(EventLogTags.BOOT_PROGRESS_PMS_SCAN_END,
                     SystemClock.uptimeMillis());
-            Slog.i(TAG, "Time to scan packages: "
-                    + ((SystemClock.uptimeMillis()-startTime)/1000f)
-                    + " seconds");
+            //Slog.i(TAG, "Time to scan packages: "
+            //        + ((SystemClock.uptimeMillis()-startTime)/1000f)
+            //        + " seconds");
 
             // If the platform SDK has changed since the last time we booted,
             // we need to re-grant app permission to catch any new ones that
@@ -2659,12 +2659,12 @@ public class PackageManagerService extends IPackageManager.Stub {
                     com.android.internal.R.array.config_disabledComponents)) {
                 ComponentName cn = ComponentName.unflattenFromString(name);
                 mDisabledComponentsList.add(cn);
-                Slog.v(TAG, "Disabling " + name);
+                //Slog.v(TAG, "Disabling " + name);
                 String className = cn.getClassName();
                 PackageSetting pkgSetting = mSettings.mPackages.get(cn.getPackageName());
                 if (pkgSetting == null || pkgSetting.pkg == null
                         || !pkgSetting.pkg.hasComponentClassName(className)) {
-                    Slog.w(TAG, "Unable to disable " + name);
+                    //Slog.w(TAG, "Unable to disable " + name);
                     continue;
                 }
                 pkgSetting.disableComponentLPw(className, UserHandle.USER_OWNER);
@@ -2674,12 +2674,12 @@ public class PackageManagerService extends IPackageManager.Stub {
             for (String name : mContext.getResources().getStringArray(
                     com.android.internal.R.array.config_forceEnabledComponents)) {
                 ComponentName cn = ComponentName.unflattenFromString(name);
-                Slog.v(TAG, "Enabling " + name);
+                //Slog.v(TAG, "Enabling " + name);
                 String className = cn.getClassName();
                 PackageSetting pkgSetting = mSettings.mPackages.get(cn.getPackageName());
                 if (pkgSetting == null || pkgSetting.pkg == null
                         || !pkgSetting.pkg.hasComponentClassName(className)) {
-                    Slog.w(TAG, "Unable to enable " + name);
+                    //Slog.w(TAG, "Unable to enable " + name);
                     continue;
                 }
                 pkgSetting.enableComponentLPw(className, UserHandle.USER_OWNER);
@@ -6794,10 +6794,10 @@ public class PackageManagerService extends IPackageManager.Stub {
                     + " flags=0x" + Integer.toHexString(parseFlags));
         }
 
-        Log.d(TAG, "start scanDirLI:"+dir);
+        //Log.d(TAG, "start scanDirLI:"+dir);
         // use multi thread to speed up scanning
         int iMultitaskNum = SystemProperties.getInt("persist.pm.multitask", 6);
-        Log.d(TAG, "max thread:" + iMultitaskNum);
+        //Log.d(TAG, "max thread:" + iMultitaskNum);
         final MultiTaskDealer dealer = (iMultitaskNum > 1) ? MultiTaskDealer.startDealer(
                 MultiTaskDealer.PACKAGEMANAGER_SCANER, iMultitaskNum) : null;
 
@@ -6839,7 +6839,7 @@ public class PackageManagerService extends IPackageManager.Stub {
 
         if (dealer != null)
             dealer.waitAll();
-        Log.d(TAG, "end scanDirLI:"+dir);
+        //Log.d(TAG, "end scanDirLI:"+dir);
     }
 
     private static File getSettingsProblemFile() {
@@ -9005,10 +9005,10 @@ public class PackageManagerService extends IPackageManager.Stub {
                 if (pkg.applicationInfo.targetSdkVersion > Build.VERSION_CODES.LOLLIPOP_MR1) {
                     p.group = mPermissionGroups.get(p.info.group);
                     // Warn for a permission in an unknown group.
-                    if (p.info.group != null && p.group == null) {
-                        Slog.w(TAG, "Permission " + p.info.name + " from package "
-                                + p.info.packageName + " in an unknown group " + p.info.group);
-                    }
+                    //if (p.info.group != null && p.group == null) {
+                    //    Slog.w(TAG, "Permission " + p.info.name + " from package "
+                    //            + p.info.packageName + " in an unknown group " + p.info.group);
+                    //}
                 }
 
                 ArrayMap<String, BasePermission> permissionMap =
@@ -9456,12 +9456,12 @@ public class PackageManagerService extends IPackageManager.Stub {
                             !TextUtils.equals(adjustedAbi, ps.pkg.applicationInfo.primaryCpuAbi)) {
                         ps.pkg.applicationInfo.primaryCpuAbi = adjustedAbi;
 
-                        Slog.i(TAG, "Adjusting ABI for " + ps.name + " to " + adjustedAbi
-                                + " (requirer="
-                                + (requirer == null ? "null" : (requirer.pkg == null ? "null" : requirer.pkg.packageName))
-                                + ", scannedPackage="
-                                + (scannedPackage != null ? scannedPackage.packageName : "null")
-                                + ")");
+                        //Slog.i(TAG, "Adjusting ABI for " + ps.name + " to " + adjustedAbi
+                        //        + " (requirer="
+                        //        + (requirer == null ? "null" : (requirer.pkg == null ? "null" : requirer.pkg.packageName))
+                        //        + ", scannedPackage="
+                        //        + (scannedPackage != null ? scannedPackage.packageName : "null")
+                        //        + ")");
 
                         try {
                             mInstaller.rmdex(ps.codePathString,
@@ -10164,10 +10164,10 @@ public class PackageManagerService extends IPackageManager.Stub {
             }
 
             if (bp == null || bp.packageSetting == null) {
-                if (packageOfInterest == null || packageOfInterest.equals(pkg.packageName)) {
-                    Slog.w(TAG, "Unknown permission " + name
-                            + " in package " + pkg.packageName);
-                }
+                //if (packageOfInterest == null || packageOfInterest.equals(pkg.packageName)) {
+                    //Slog.w(TAG, "Unknown permission " + name
+                    //        + " in package " + pkg.packageName);
+                //}
                 continue;
             }
 
@@ -10374,12 +10374,12 @@ public class PackageManagerService extends IPackageManager.Stub {
                     } break;
 
                     default: {
-                        if (packageOfInterest == null
-                                || packageOfInterest.equals(pkg.packageName)) {
-                            Slog.w(TAG, "Not granting permission " + perm
-                                    + " to package " + pkg.packageName
-                                    + " because it was previously installed without");
-                        }
+                        //if (packageOfInterest == null
+                        //        || packageOfInterest.equals(pkg.packageName)) {
+                            //Slog.w(TAG, "Not granting permission " + perm
+                            //        + " to package " + pkg.packageName
+                            //        + " because it was previously installed without");
+                        //}
                     } break;
                 }
             } else {
@@ -10389,21 +10389,21 @@ public class PackageManagerService extends IPackageManager.Stub {
                     permissionsState.updatePermissionFlags(bp, UserHandle.USER_ALL,
                             PackageManager.MASK_PERMISSION_FLAGS, 0);
                     changedInstallPermission = true;
-                    Slog.i(TAG, "Un-granting permission " + perm
-                            + " from package " + pkg.packageName
-                            + " (protectionLevel=" + bp.protectionLevel
-                            + " flags=0x" + Integer.toHexString(pkg.applicationInfo.flags)
-                            + ")");
-                } else if ((bp.protectionLevel&PermissionInfo.PROTECTION_FLAG_APPOP) == 0) {
+                    //Slog.i(TAG, "Un-granting permission " + perm
+                    //        + " from package " + pkg.packageName
+                    //        + " (protectionLevel=" + bp.protectionLevel
+                    //        + " flags=0x" + Integer.toHexString(pkg.applicationInfo.flags)
+                    //        + ")");
+                //} else if ((bp.protectionLevel&PermissionInfo.PROTECTION_FLAG_APPOP) == 0) {
                     // Don't print warning for app op permissions, since it is fine for them
                     // not to be granted, there is a UI for the user to decide.
-                    if (packageOfInterest == null || packageOfInterest.equals(pkg.packageName)) {
-                        Slog.w(TAG, "Not granting permission " + perm
-                                + " to package " + pkg.packageName
-                                + " (protectionLevel=" + bp.protectionLevel
-                                + " flags=0x" + Integer.toHexString(pkg.applicationInfo.flags)
-                                + ")");
-                    }
+                    //if (packageOfInterest == null || packageOfInterest.equals(pkg.packageName)) {
+                    //    Slog.w(TAG, "Not granting permission " + perm
+                    //            + " to package " + pkg.packageName
+                    //            + " (protectionLevel=" + bp.protectionLevel
+                    //            + " flags=0x" + Integer.toHexString(pkg.applicationInfo.flags)
+                    //            + ")");
+                //    }
                 }
             }
         }
@@ -10435,8 +10435,8 @@ public class PackageManagerService extends IPackageManager.Stub {
             if (npi.name.equals(perm)
                     && pkg.applicationInfo.targetSdkVersion < npi.sdkVersion) {
                 allowed = true;
-                Log.i(TAG, "Auto-granting " + perm + " to old pkg "
-                        + pkg.packageName);
+                //Log.i(TAG, "Auto-granting " + perm + " to old pkg "
+                //        + pkg.packageName);
                 break;
             }
         }
@@ -10765,10 +10765,10 @@ public class PackageManagerService extends IPackageManager.Stub {
                     ((applicationInfo.privateFlags & ApplicationInfo.PRIVATE_FLAG_PRIVILEGED) != 0);
             if (!privilegedApp) {
                 // non-privileged applications can never define a priority >0
-                Slog.w(TAG, "Non-privileged app; cap priority to 0;"
-                        + " package: " + applicationInfo.packageName
-                        + " activity: " + intent.activity.className
-                        + " origPrio: " + intent.getPriority());
+                //Slog.w(TAG, "Non-privileged app; cap priority to 0;"
+                //        + " package: " + applicationInfo.packageName
+                //        + " activity: " + intent.activity.className
+                //        + " origPrio: " + intent.getPriority());
                 intent.setPriority(0);
                 return;
             }
@@ -10808,10 +10808,10 @@ public class PackageManagerService extends IPackageManager.Stub {
                             // setup wizard gets whatever it wants
                             return;
                         }
-                        Slog.w(TAG, "Protected action; cap priority to 0;"
-                                + " package: " + intent.activity.info.packageName
-                                + " activity: " + intent.activity.className
-                                + " origPrio: " + intent.getPriority());
+                        //Slog.w(TAG, "Protected action; cap priority to 0;"
+                        //        + " package: " + intent.activity.info.packageName
+                        //        + " activity: " + intent.activity.className
+                        //        + " origPrio: " + intent.getPriority());
                         intent.setPriority(0);
                         return;
                     }
@@ -18104,8 +18104,8 @@ Slog.v(TAG, ":: stepped forward, applying functor at tag " + parser.getName());
         if (!sUserManager.exists(userId)) return;
         // Don't allow to enable components marked for disabling at build-time
         if (mDisabledComponentsList.contains(componentName)) {
-            Slog.d(TAG, "Ignoring attempt to set enabled state of disabled component "
-                    + componentName.flattenToString());
+            //Slog.d(TAG, "Ignoring attempt to set enabled state of disabled component "
+            //        + componentName.flattenToString());
             return;
         }
         setEnabledSetting(componentName.getPackageName(),
@@ -20060,8 +20060,8 @@ Slog.v(TAG, ":: stepped forward, applying functor at tag " + parser.getName());
      * correct for all installed apps.
      */
     private void reconcileAppsDataLI(String volumeUuid, int userId, int flags) {
-        Slog.v(TAG, "reconcileAppsData for " + volumeUuid + " u" + userId + " 0x"
-                + Integer.toHexString(flags));
+        //Slog.v(TAG, "reconcileAppsData for " + volumeUuid + " u" + userId + " 0x"
+        //        + Integer.toHexString(flags));
 
         final File ceDir = Environment.getDataUserCeDirectory(volumeUuid, userId);
         final File deDir = Environment.getDataUserDeDirectory(volumeUuid, userId);
@@ -20120,7 +20120,7 @@ Slog.v(TAG, ":: stepped forward, applying functor at tag " + parser.getName());
         for (PackageSetting ps : packages) {
             final String packageName = ps.name;
             if (ps.pkg == null) {
-                Slog.w(TAG, "Odd, missing scanned package " + packageName);
+                //Slog.w(TAG, "Odd, missing scanned package " + packageName);
                 // TODO: might be due to legacy ASEC apps; we should circle back
                 // and reconcile again once they're scanned
                 continue;
@@ -20139,7 +20139,7 @@ Slog.v(TAG, ":: stepped forward, applying functor at tag " + parser.getName());
             }
         }
 
-        Slog.v(TAG, "reconcileAppsData finished " + preparedCount + " packages");
+        //Slog.v(TAG, "reconcileAppsData finished " + preparedCount + " packages");
     }
 
     /**

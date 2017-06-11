@@ -59,10 +59,10 @@ public class NetPluginDelegate {
                     devStats, xtStats);
         } catch (InvocationTargetException | SecurityException | NoSuchMethodException e) {
             e.printStackTrace();
-            Log.w(TAG, "Failed to invoke getTetherStats()");
+            // Log.w(TAG, "Failed to invoke getTetherStats()");
         } catch (Exception e) {
             e.printStackTrace();
-            Log.w(TAG, "Error calling getTetherStats Method on extension jar");
+            // Log.w(TAG, "Error calling getTetherStats Method on extension jar");
         }
         if (LOGV) Slog.v(TAG, "getTetherStats() X");
     }
@@ -76,10 +76,10 @@ public class NetPluginDelegate {
                     .invoke(tetherExtensionObj);
         } catch (InvocationTargetException | SecurityException | NoSuchMethodException e) {
             e.printStackTrace();
-            Log.w(TAG, "Failed to invoke peekTetherStats()");
+            // Log.w(TAG, "Failed to invoke peekTetherStats()");
         } catch (Exception e) {
             e.printStackTrace();
-            Log.w(TAG, "Error calling peekTetherStats Method on extension jar");
+            // Log.w(TAG, "Error calling peekTetherStats Method on extension jar");
         }
         if (LOGV) Slog.v(TAG, "peekTetherStats() X");
         return ret_val;
@@ -93,10 +93,10 @@ public class NetPluginDelegate {
                     tetherExtensionObj, intIface, extIface);
         } catch (InvocationTargetException | SecurityException | NoSuchMethodException e) {
             e.printStackTrace();
-            Log.w(TAG, "Failed to invoke natStarted()");
+            // Log.w(TAG, "Failed to invoke natStarted()");
         } catch (Exception e) {
             e.printStackTrace();
-            Log.w(TAG, "Error calling natStarted Method on extension jar");
+            // Log.w(TAG, "Error calling natStarted Method on extension jar");
         }
         if (LOGV) Slog.v(TAG, "natStarted() X");
     }
@@ -109,10 +109,10 @@ public class NetPluginDelegate {
                     tetherExtensionObj, intIface, extIface);
         } catch (InvocationTargetException | SecurityException | NoSuchMethodException e) {
             e.printStackTrace();
-            Log.w(TAG, "Failed to invoke natStopped()");
+            // Log.w(TAG, "Failed to invoke natStopped()");
         } catch (Exception e) {
             e.printStackTrace();
-            Log.w(TAG, "Error calling natStopped Method on extension jar");
+            // Log.w(TAG, "Error calling natStopped Method on extension jar");
         }
         if (LOGV) Slog.v(TAG, "natStopped() X");
     }
@@ -125,10 +125,10 @@ public class NetPluginDelegate {
                     tetherExtensionObj, iface, quota);
         } catch (InvocationTargetException | SecurityException | NoSuchMethodException e) {
             e.printStackTrace();
-            Log.w(TAG, "Failed to invoke setQuota()");
+            // Log.w(TAG, "Failed to invoke setQuota()");
         } catch (Exception e) {
             e.printStackTrace();
-            Log.w(TAG, "Error calling setQuota Method on extension jar");
+            // Log.w(TAG, "Error calling setQuota Method on extension jar");
         }
         if (LOGV) Slog.v(TAG, "setQuota(" + iface + ", " + quota + ") X");
     }
@@ -141,10 +141,10 @@ public class NetPluginDelegate {
                     tetherExtensionObj, net);
         } catch (InvocationTargetException | SecurityException | NoSuchMethodException e) {
             e.printStackTrace();
-            Log.w(TAG, "Failed to invoke setUpstream()");
+            // Log.w(TAG, "Failed to invoke setUpstream()");
         } catch (Exception e) {
             e.printStackTrace();
-            Log.w(TAG, "Error calling setUpstream Method on extension jar");
+            // Log.w(TAG, "Error calling setUpstream Method on extension jar");
         }
         if (LOGV) Slog.v(TAG, "setUpstream(" + net + ") X");
     }
@@ -159,7 +159,7 @@ public class NetPluginDelegate {
         }
         boolean pathExists = new File(realProviderPath).exists();
         if (!pathExists) {
-            Log.w(TAG, "ConnectivityExt jar file not present");
+            // Log.w(TAG, "ConnectivityExt jar file not present");
             return false;
         }
 
@@ -174,11 +174,11 @@ public class NetPluginDelegate {
                 if (LOGV) Slog.v(TAG, "ConnectivityExt jar loaded");
             } catch (ClassNotFoundException | InstantiationException | IllegalAccessException e) {
                 e.printStackTrace();
-                Log.w(TAG, "Failed to find, instantiate or access ConnectivityExt jar ");
+                // Log.w(TAG, "Failed to find, instantiate or access ConnectivityExt jar ");
                 return false;
             } catch (Exception e) {
                 e.printStackTrace();
-                Log.w(TAG, "unable to load ConnectivityExt jar");
+                // Log.w(TAG, "unable to load ConnectivityExt jar");
                 return false;
             }
         }
