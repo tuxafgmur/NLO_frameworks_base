@@ -7087,7 +7087,7 @@ public class PackageManagerService extends IPackageManager.Stub {
                 // version of the new path against what we have stored to determine
                 // what to do.
                 if (DEBUG_INSTALL) Slog.d(TAG, "Path changing from " + ps.codePath);
-                if (pkg.mVersionCode <= ps.versionCode) {
+                if (pkg.mVersionCode < ps.versionCode) {
                     // The system package has been updated and the code path does not match
                     // Ignore entry. Skip it.
                     if (DEBUG_INSTALL) Slog.i(TAG, "Package " + ps.name + " at " + scanFile
@@ -7122,13 +7122,10 @@ public class PackageManagerService extends IPackageManager.Stub {
                             + scanFile + " ignored: updated version " + ps.versionCode
                             + " better than this " + pkg.mVersionCode);
                 } else {
-                    // The current app on the system partition is better than
-                    // what we have updated to on the data partition; switch
-                    // back to the system partition version.
-                    // At this point, its safely assumed that package installation for
-                    // apps in system partition will go through. If not there won't be a working
-                    // version of the app
-                    // writer
+                    // The current app on the system partition is better or equal than what we have
+                    // updated to on the data partition. Switch back to the system partition version.
+                    // At this point, its safely assumed that package installation for apps in system
+                    // partition will go through. If not there won't be a working version of the app writer.
                     synchronized (mPackages) {
                         // Just remove the loaded entries from package lists.
                         mPackages.remove(ps.name);
@@ -7136,8 +7133,8 @@ public class PackageManagerService extends IPackageManager.Stub {
 
                     logCriticalInfo(Log.WARN, "Package " + ps.name + " at " + scanFile
                             + " reverting from " + ps.codePathString
-                            + ": new version " + pkg.mVersionCode
-                            + " better than installed " + ps.versionCode);
+                            + " : old version " + ps.versionCode
+                            + " : new version " + pkg.mVersionCode);
 
                     InstallArgs args = createInstallArgsForExisting(packageFlagsToInstallFlags(ps),
                             ps.codePathString, ps.resourcePathString, getAppDexInstructionSets(ps));
@@ -7153,12 +7150,10 @@ public class PackageManagerService extends IPackageManager.Stub {
         }
 
         if (updatedPkg != null) {
-            // An updated system app will not have the PARSE_IS_SYSTEM flag set
-            // initially
+            // An updated system app will not have the PARSE_IS_SYSTEM flag set initially
             policyFlags |= PackageParser.PARSE_IS_SYSTEM;
 
-            // An updated privileged app will not have the PARSE_IS_PRIVILEGED
-            // flag set initially
+            // An updated privileged app will not have the PARSE_IS_PRIVILEGED flag set initially
             if ((updatedPkg.pkgPrivateFlags & ApplicationInfo.PRIVATE_FLAG_PRIVILEGED) != 0) {
                 policyFlags |= PackageParser.PARSE_IS_PRIVILEGED;
             }
